@@ -7,7 +7,6 @@
 class Solution(object):
     def isPowerOfTwo(self, n):
         while True:
-            print n, n % 2
             # base case
             if n < 1:
                 return False
