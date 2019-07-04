@@ -14,20 +14,34 @@ class Solution(object):
         :rtype: List[int]
         """
         index_list = []
-        p_len = len(p)
 
-        p_counter = collections.Counter(list(p))
+        p_counter = collections.Counter(p)
 
-        for i in range(len(list(s))):
-            word = s[i:(p_len+i)]
-            if len(word) == p_len:
-                word_counter = collections.Counter(list(word))
+        # get first len(p) - 1 letters of s in a collection
+        s_counter = collections.Counter(s[:len(p)-1])
 
-                append = False
-                if word_counter == p_counter:
-                    append = True
-                            
-                if append:
-                    index_list.append(i)
+        # index counter
+        index = 0
 
+        # loop through len(p) - 1 to len(s)
+        for i in range(len(p) - 1, len(s)):
+            # add first item seen to s_counter
+            s_counter[s[i]] += 1
+
+            # append index to list if counters are equal
+            if s_counter == p_counter:
+                index_list.append(index)
+
+            # decrease the first item value in s_counter
+            # can't just pop off the first item
+            # even though it was seen because the 
+            # value could be > 1
+            s_counter[s[index]] -= 1
+
+            # remove the first item if value = 0
+            if s_counter[s[index]] == 0:
+                del(s_counter[s[index]])
+
+            index += 1
+            
         return index_list
