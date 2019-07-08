@@ -4,24 +4,18 @@
 # Valid Anagram
 # https://leetcode.com/problems/valid-anagram/
 
+import collections
+
 class Solution(object):
     def isAnagram(self, s, t):
-        # convert inputs to lists
-        listS = list(s)
-        listT = list(t)
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        t_counter = collections.Counter(t)
+        s_counter = collections.Counter(s)
         
-        # sort lists
-        a = sorted(listS)
-        b = sorted(listT)
-        
-        # base case
-        if len(a) != len(b):
-            return False
-            
-        # loop through inputs
-        for i in range(len(a)):
-            if a[i] == b[i]:
-                continue
-            else:
-                return False
-        return True
+        if t_counter == s_counter:
+            return True
+        return False
