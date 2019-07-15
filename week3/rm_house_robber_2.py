@@ -1,8 +1,10 @@
 # Jenny Huang
 # Wallbreakers Cohort #3
 # Week 3
-# House Robber 2 - Dynamic Programming
+# House Robber 2 - Recursion
 # https://leetcode.com/problems/house-robber-ii/
+
+# INCOMPLETE
 
 class Solution(object):
     def rob(self, nums):
@@ -11,6 +13,30 @@ class Solution(object):
         :rtype: int
         """
 
+        cache = {}
+        i = 0
+        a = getLength(self, nums, i, cache)
+
+def getLength(self, nums, i, cache):
+    # if there is a cached value, then return it
+    if i in cache:
+        return cache[i]
+
+    if len(nums) == 0:
+        return 0
+    elif len(nums) == 1:
+        return nums[0]
+    elif len(nums) == 2:
+        return max(nums[0], nums[1])
+    elif len(nums) > 2:
+        cache[0] = nums[0]
+        cache[1] = nums[1]
+
+    # store length in cache
+    length = max(getLength[i] + getLength[i-2], getLength[i-1])
+    return length
+
+    """
         # base cases
         if len(nums) == 0:
             return 0
@@ -43,3 +69,4 @@ class Solution(object):
         
         # get the max from lists
         return max(dp[-1], dp2[-1])
+    """
